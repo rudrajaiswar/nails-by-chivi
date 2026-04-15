@@ -44,15 +44,78 @@ app.get('/api/services', (req, res) => {
   res.json({
     success: true,
     data: [
-      { id: 1, name: 'Bridal Makeup', price: 8000 },
-      { id: 2, name: 'Party Look Makeup', price: 1800 },
-      { id: 3, name: 'Traditional Look Makeup', price: 2000 },
-      { id: 4, name: 'Hairstyle & Makeup', price: 2500 },
-      { id: 5, name: 'Facial', price: 800 },
-      { id: 6, name: 'Cleanup', price: 600 },
-      { id: 7, name: 'Nail Art', price: 500 },
-      { id: 9, name: 'Pre-Bridal Package', price: 12000 },
-      { id: 10, name: 'Full Glam Package', price: 5000 }
+      {
+        id: 1,
+        name: 'Bridal Makeup',
+        price: 8000,
+        duration: '3-4 hrs',
+        icon: '👰',
+        description: 'Complete bridal look with HD makeup'
+      },
+      {
+        id: 2,
+        name: 'Party Look Makeup',
+        price: 1800,
+        duration: '1-2 hrs',
+        icon: '🎉',
+        description: 'Glamorous party-ready look'
+      },
+      {
+        id: 3,
+        name: 'Traditional Look Makeup',
+        price: 2000,
+        duration: '2 hrs',
+        icon: '🪷',
+        description: 'Classic traditional makeup'
+      },
+      {
+        id: 4,
+        name: 'Hairstyle & Makeup',
+        price: 2500,
+        duration: '2-3 hrs',
+        icon: '💇‍♀️',
+        description: 'Hair styling + makeup combo'
+      },
+      {
+        id: 5,
+        name: 'Facial',
+        price: 800,
+        duration: '45 min',
+        icon: '✨',
+        description: 'Skin glow treatment'
+      },
+      {
+        id: 6,
+        name: 'Cleanup',
+        price: 600,
+        duration: '30 min',
+        icon: '🧖‍♀️',
+        description: 'Deep skin cleaning'
+      },
+      {
+        id: 7,
+        name: 'Nail Art',
+        price: 500,
+        duration: '45 min',
+        icon: '💅',
+        description: 'Creative nail designs'
+      },
+      {
+        id: 9,
+        name: 'Pre-Bridal Package',
+        price: 12000,
+        duration: 'Multiple sessions',
+        icon: '💍',
+        description: 'Complete bridal preparation'
+      },
+      {
+        id: 10,
+        name: 'Full Glam Package',
+        price: 5000,
+        duration: '4-5 hrs',
+        icon: '⭐',
+        description: 'Full makeover package'
+      }
     ]
   });
 });
