@@ -1,0 +1,1902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nails By Chivi | Luxury Beauty & Makeup Studio — Mumbai</title>
+  <meta name="description" content="Premium bridal makeup, nail art, facials & beauty services in Mumbai. Book your appointment with certified MUA Tanvi Keny." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── CSS Variables ──────────────────────────────────────────────── */
+    :root {
+      --black:       #0d0a0b;
+      --deep:        #120e10;
+      --card-bg:     #1a1419;
+      --rose-gold:   #c9a07a;
+      --rose-light:  #dfc09a;
+      --rose-pale:   #f0dbc8;
+      --blush:       #e8b4b8;
+      --cream:       #faf3ec;
+      --text:        #e8ddd4;
+      --muted:       #9a8880;
+      --border:      rgba(201,160,122,0.18);
+      --glow:        rgba(201,160,122,0.12);
+    }
+
+    /* ─── Reset & Base ───────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    a, button, .service-card { user-select: none; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--black);
+      color: var(--text);
+      overflow-x: hidden;
+      
+    }
+    
+    /* Global Cursor Fixes - Resets to native pointer */
+    html { cursor: default; }
+    a, button, select, input[type="submit"], input[type="button"], label { cursor: pointer; }
+    input[type="text"], input[type="tel"], input[type="email"] { cursor: text; }
+
+    /* ─── Scrollbar ──────────────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--deep); }
+    ::-webkit-scrollbar-thumb { background: var(--rose-gold); border-radius: 2px; }
+
+    /* ─── Noise Overlay ──────────────────────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.4;
+    }
+
+    /* ─── Navigation ─────────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.5rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.4s, backdrop-filter 0.4s, padding 0.4s;
+    }
+    nav.scrolled {
+      background: rgba(13,10,11,0.92);
+      backdrop-filter: blur(20px);
+      padding: 1rem 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+    .nav-logo .brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--rose-light);
+      letter-spacing: 0.02em;
+    }
+    .nav-logo .sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.3s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 1px;
+      background: var(--rose-gold);
+      transition: width 0.3s;
+    }
+    .nav-links a:hover { color: var(--rose-light); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta {
+      padding: 0.55rem 1.4rem;
+      border: 1px solid var(--rose-gold);
+      color: var(--rose-gold);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.3s, color 0.3s;
+      cursor: pointer;
+    }
+    .nav-cta:hover { background: var(--rose-gold); color: var(--black); }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+    .hamburger span { width: 24px; height: 1px; background: var(--rose-light); transition: all 0.3s; }
+
+    /* ─── Hero Section ───────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 10rem 4rem 6rem 6rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 2rem;
+    }
+    .hero-eyebrow span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--rose-gold);
+    }
+    .eyebrow-line { width: 40px; height: 1px; background: var(--rose-gold); }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.2rem, 5.5vw, 6rem);
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--rose-gold);
+      display: block;
+    }
+
+    .hero-desc {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 420px;
+      margin-bottom: 3rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: var(--rose-gold);
+      color: var(--black);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.2s;
+      cursor: pointer;
+    }
+    .btn-primary:hover { background: var(--rose-light); transform: translateY(-2px); }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--rose-pale);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: color 0.3s;
+      cursor: pointer;
+    }
+    .btn-outline .arrow { transition: transform 0.3s; }
+    .btn-outline:hover { color: var(--rose-gold); }
+    .btn-outline:hover .arrow { transform: translateX(4px); }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 4rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--rose-light);
+      line-height: 1;
+    }
+    .stat-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-top: 0.3rem;
+    }
+
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-right::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, var(--black) 0%, transparent 30%);
+      z-index: 1;
+    }
+    .hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: brightness(0.7) sepia(0.2);
+    }
+
+    .hero-badge {
+      position: absolute;
+      bottom: 3rem;
+      right: 3rem;
+      z-index: 2;
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      border: 1px solid var(--rose-gold);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: rgba(13,10,11,0.8);
+      backdrop-filter: blur(10px);
+      animation: rotateBadge 20s linear infinite;
+    }
+    .hero-badge svg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      animation: rotateBadge 20s linear infinite;
+    }
+    .hero-badge .badge-center {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--rose-gold);
+      animation: none;
+    }
+    @keyframes rotateBadge { to { transform: rotate(360deg); } }
+
+    /* ─── Section Common ─────────────────────────────────────────────── */
+    section { position: relative; z-index: 2; }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+    .section-tag {
+      display: inline-block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--rose-gold);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.15;
+    }
+    .section-title em { font-style: italic; color: var(--rose-gold); }
+    .section-divider {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--rose-gold), transparent);
+      margin: 1.5rem auto 0;
+    }
+
+    /* ─── About Section ──────────────────────────────────────────────── */
+    #about {
+      padding: 8rem 6rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .about-images {
+      position: relative;
+      height: 600px;
+    }
+    .about-img-main {
+      position: absolute;
+      right: 0; top: 0;
+      width: 78%;
+      height: 85%;
+      object-fit: cover;
+      filter: brightness(0.8) sepia(0.15);
+    }
+    .about-img-secondary {
+      position: absolute;
+      left: 0; bottom: 0;
+      width: 52%;
+      height: 50%;
+      object-fit: cover;
+      filter: brightness(0.75) sepia(0.2);
+      border: 4px solid var(--black);
+    }
+    .about-accent {
+      position: absolute;
+      left: 34%; top: 35%;
+      width: 32%;
+      height: 28%;
+      border: 1px solid var(--rose-gold);
+      pointer-events: none;
+    }
+
+    .about-content { padding-left: 2rem; }
+    .about-content .section-header { text-align: left; margin-bottom: 2rem; }
+    .about-content .section-divider { margin-left: 0; }
+
+    .about-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .about-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin: 2rem 0;
+    }
+    .tag {
+      padding: 0.4rem 1rem;
+      border: 1px solid var(--border);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: var(--rose-pale);
+      transition: border-color 0.3s, color 0.3s;
+    }
+    .tag:hover { border-color: var(--rose-gold); color: var(--rose-gold); }
+
+    /* ─── Services Section ───────────────────────────────────────────── */
+    #services {
+      padding: 8rem 5rem;
+      background: linear-gradient(180deg, transparent 0%, rgba(201,160,122,0.04) 50%, transparent 100%);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5px;
+      border: 1.5px solid var(--border);
+    }
+
+    .service-card {
+      background: var(--deep);
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.4s;
+      
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--glow) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.4s;
+      pointer-events: none;
+    }
+    .service-card:hover { background: var(--card-bg); }
+    .service-card:hover::before { opacity: 1; }
+    .service-card.popular {
+      border-top: 2px solid var(--rose-gold);
+    }
+
+    .service-popular-tag {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      padding: 0.2rem 0.7rem;
+      background: var(--rose-gold);
+      color: var(--black);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .service-icon {
+      font-size: 2rem;
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+    .service-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      color: var(--rose-pale);
+    }
+    .service-desc {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    .service-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1.2rem;
+      border-top: 1px solid var(--border);
+    }
+    .service-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--rose-gold);
+    }
+    .service-price span {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 400;
+    }
+    .service-duration {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    .book-service-btn {
+      display: block;
+      width: 100%;
+      margin-top: 1rem;
+      padding: 0.7rem 1.2rem;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--rose-pale);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-align: center;
+      text-decoration: none;
+      transition: border-color 0.3s, color 0.3s, background 0.3s;
+      cursor: pointer;
+    }
+    .book-service-btn:hover {
+      border-color: var(--rose-gold);
+      color: var(--rose-gold);
+      background: var(--glow);
+    }
+
+    /* ─── Gallery Section ────────────────────────────────────────────── */
+    #gallery {
+      padding: 8rem 5rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto;
+      gap: 8px;
+    }
+    .gallery-item {
+      overflow: hidden;
+      position: relative;
+    }
+    .gallery-item:first-child { grid-column: span 2; grid-row: span 2; }
+
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      aspect-ratio: 1;
+      filter: brightness(0.75) sepia(0.1);
+      transition: transform 0.6s cubic-bezier(.165,.84,.44,1), filter 0.4s;
+      display: block;
+    }
+    .gallery-item:first-child img { aspect-ratio: auto; min-height: 400px; }
+
+    .gallery-item:hover img {
+      transform: scale(1.06);
+      filter: brightness(0.85) sepia(0.05);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(13,10,11,0.7) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.4s;
+      display: flex;
+      align-items: flex-end;
+      padding: 1.5rem;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      color: var(--rose-pale);
+    }
+
+    /* ─── Booking Section ────────────────────────────────────────────── */
+    #booking {
+      padding: 8rem 5rem;
+      background: var(--deep);
+      position: relative;
+      overflow: hidden;
+    }
+    #booking::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,160,122,0.06) 0%, transparent 70%);
+    }
+
+    .booking-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .booking-info .section-header { text-align: left; margin-bottom: 2.5rem; }
+    .booking-info .section-divider { margin-left: 0; }
+
+    .booking-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    .booking-feature-icon {
+      width: 44px; height: 44px;
+      min-width: 44px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+    .booking-feature-text h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--rose-pale);
+      margin-bottom: 0.2rem;
+    }
+    .booking-feature-text p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .contact-quick {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .contact-quick p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    .contact-quick a {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      color: var(--rose-light);
+      text-decoration: none;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      transition: color 0.3s;
+      cursor: pointer;
+    }
+    .contact-quick a:hover { color: var(--rose-gold); }
+
+    /* ─── Booking Form ────────────────────────────────────────────────── */
+    .booking-form {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 3rem;
+    }
+
+    .form-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--rose-pale);
+      margin-bottom: 0.5rem;
+    }
+    .form-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+    }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group label {
+      display: block;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: var(--black);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.85rem 1rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.9rem;
+      transition: border-color 0.3s;
+      outline: none;
+      -webkit-appearance: none;
+      
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--rose-gold); }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--muted); opacity: 0.7; }
+    .form-group select option { background: var(--black); }
+    .form-group textarea { min-height: 100px; resize: vertical; }
+
+    .form-submit {
+      width: 100%;
+      padding: 1rem;
+      background: var(--rose-gold);
+      color: var(--black);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+      margin-top: 0.5rem;
+    }
+    .form-submit:hover:not(:disabled) { background: var(--rose-light); transform: translateY(-2px); }
+    .form-submit:disabled { opacity: 0.6; }
+
+    .form-alert {
+      padding: 1rem 1.2rem;
+      margin-top: 1.2rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      display: none;
+    }
+    .form-alert.success {
+      border: 1px solid rgba(144, 238, 144, 0.3);
+      background: rgba(144, 238, 144, 0.08);
+      color: #90ee90;
+      display: block;
+    }
+    .form-alert.error {
+      border: 1px solid rgba(238, 100, 100, 0.3);
+      background: rgba(238, 100, 100, 0.08);
+      color: #ee6464;
+      display: block;
+    }
+
+    /* ─── Testimonials ───────────────────────────────────────────────── */
+    #testimonials {
+      padding: 8rem 5rem;
+    }
+
+    .testimonials-scroll {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .testimonial-card {
+      padding: 2.5rem;
+      border: 1px solid var(--border);
+      background: var(--deep);
+      position: relative;
+    }
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 1.5rem; right: 2rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 6rem;
+      line-height: 1;
+      color: var(--rose-gold);
+      opacity: 0.15;
+    }
+
+    .testimonial-stars {
+      color: var(--rose-gold);
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      margin-bottom: 1.2rem;
+    }
+    .testimonial-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-style: italic;
+      line-height: 1.7;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .author-avatar {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--rose-gold), var(--blush));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--black);
+      font-weight: 700;
+    }
+    .author-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      color: var(--rose-pale);
+    }
+    .author-role {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      margin-top: 0.15rem;
+    }
+
+    /* ─── Brands Marquee ─────────────────────────────────────────────── */
+    #brands {
+      padding: 4rem 0;
+      background: var(--black);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .brands-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--rose-gold);
+      margin-bottom: 2.5rem;
+    }
+    .brands-track-container {
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .brands-track {
+      display: inline-flex;
+      gap: 5rem;
+      padding-right: 5rem;
+      animation: scrollBrands 25s linear infinite;
+    }
+    .brand-item {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-style: italic;
+      font-weight: 700;
+      color: var(--text);
+      opacity: 0.4;
+      transition: opacity 0.3s, color 0.3s;
+    }
+    .brand-item:hover {
+      opacity: 1;
+      color: var(--rose-light);
+    }
+    @keyframes scrollBrands {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); } 
+    }
+
+    /* ─── Instagram Banner ───────────────────────────────────────────── */
+    #instagram {
+      padding: 5rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(135deg, rgba(201,160,122,0.05) 0%, transparent 60%);
+    }
+    #instagram p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+    #instagram h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 3rem);
+      font-weight: 700;
+      color: var(--rose-pale);
+      margin-bottom: 1.5rem;
+    }
+    #instagram a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.8rem 2rem;
+      border: 1px solid var(--rose-gold);
+      color: var(--rose-gold);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.3s, color 0.3s;
+      cursor: pointer;
+    }
+    #instagram a:hover { background: var(--rose-gold); color: var(--black); }
+
+    /* ─── Footer ─────────────────────────────────────────────────────── */
+    footer {
+      padding: 4rem 5rem 2.5rem;
+      background: var(--deep);
+      border-top: 1px solid var(--border);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 4rem;
+      margin-bottom: 4rem;
+    }
+
+    .footer-brand .brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--rose-light);
+      margin-bottom: 0.3rem;
+    }
+    .footer-brand .tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+    }
+    .footer-brand p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .footer-col h4 {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--rose-gold);
+      margin-bottom: 1.5rem;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 0.7rem;
+      transition: color 0.3s;
+      
+    }
+    .footer-col li a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.3s;
+      cursor: pointer;
+    }
+    .footer-col li a:hover { color: var(--rose-light); }
+
+    .footer-hours span {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+    .footer-hours strong {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: var(--rose-pale);
+      font-weight: 400;
+    }
+
+    .footer-bottom {
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-bottom p {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+    .social-links { display: flex; gap: 1rem; }
+    .social-link {
+      width: 36px; height: 36px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.8rem;
+      transition: border-color 0.3s, color 0.3s;
+      cursor: pointer;
+    }
+    .social-link:hover { border-color: var(--rose-gold); color: var(--rose-gold); }
+
+    /* ─── Animations ─────────────────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal-left.visible { opacity: 1; transform: none; }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal-right.visible { opacity: 1; transform: none; }
+
+    /* ─── Mobile Nav Drawer ──────────────────────────────────────────── */
+    .mobile-menu {
+      position: fixed;
+      top: 0; right: -100%;
+      width: 300px; height: 100vh;
+      background: var(--deep);
+      border-left: 1px solid var(--border);
+      z-index: 200;
+      padding: 5rem 2.5rem 3rem;
+      transition: right 0.4s cubic-bezier(.165,.84,.44,1);
+    }
+    .mobile-menu.open { right: 0; }
+    .mobile-menu ul { list-style: none; }
+    .mobile-menu li { margin-bottom: 2rem; }
+    .mobile-menu a {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .mobile-menu a:hover { color: var(--rose-gold); }
+    .menu-close {
+      position: absolute;
+      top: 1.5rem; right: 1.5rem;
+      background: none; border: none;
+      color: var(--muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(13,10,11,0.7);
+      z-index: 199;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s;
+    }
+    .menu-overlay.open { opacity: 1; pointer-events: all; }
+
+    /* ─── Responsive ─────────────────────────────────────────────────── */
+    @media (max-width: 1100px) {
+      #hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 8rem 3rem 4rem; }
+      .hero-right { height: 50vh; }
+      .hero-right::before { background: linear-gradient(to top, var(--black) 0%, transparent 40%); }
+      #about { grid-template-columns: 1fr; padding: 6rem 3rem; gap: 3rem; }
+      .about-images { height: 360px; }
+      .about-content { padding-left: 0; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-item:first-child { grid-column: span 2; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 1.2rem 1.5rem; }
+      nav.scrolled { padding: 0.8rem 1.5rem; }
+      .nav-links { display: none; }
+      .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .hero-left { padding: 7rem 1.5rem 3rem; }
+      .hero-stats { gap: 1.5rem; }
+      #about, #services, #gallery, #booking, #testimonials { padding: 5rem 1.5rem; }
+      #instagram { padding: 3.5rem 1.5rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .booking-wrapper { grid-template-columns: 1fr; gap: 3rem; }
+      .testimonials-scroll { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      footer { padding: 3rem 1.5rem 2rem; }
+      .footer-bottom { flex-direction: column; gap: 1.5rem; text-align: center; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+    }
+  
+    /* New Features CSS */
+    .preloader {
+      position: fixed; inset: 0; background: var(--black); z-index: 99999;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.5s;
+    }
+    .preloader-circle {
+      width: 50px; height: 50px; border: 2px solid var(--border);
+      border-top-color: var(--rose-gold); border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .whatsapp-float {
+      position: fixed; bottom: 2rem; right: 2rem; width: 60px; height: 60px;
+      background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 2rem; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      text-decoration: none; transition: transform 0.3s;
+    }
+    .whatsapp-float:hover { transform: scale(1.1); }
+    .whatsapp-float svg { width: 32px; height: 32px; fill: currentColor; }
+
+    .back-to-top {
+      position: fixed; bottom: 2rem; left: 2rem; width: 50px; height: 50px;
+      background: var(--deep); border: 1px solid var(--border); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; color: var(--rose-gold);
+      font-size: 1.5rem; z-index: 1000; text-decoration: none; opacity: 0; pointer-events: none;
+      transition: opacity 0.3s, background 0.3s, transform 0.3s; line-height: 1; cursor: pointer;
+    }
+    .back-to-top.show { opacity: 1; pointer-events: all; }
+    .back-to-top:hover { background: var(--card-bg); transform: translateY(-3px); }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border); padding: 1.5rem 0; cursor: pointer;
+    }
+    .faq-question {
+      display: flex; justify-content: space-between; align-items: center;
+      font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--rose-pale);
+    }
+    .faq-answer {
+      font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--muted);
+      line-height: 1.6; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, margin-top 0.3s ease;
+    }
+    .faq-item.active .faq-answer { max-height: 500px; margin-top: 1rem; }
+    .faq-item .plus { font-size: 1.5rem; color: var(--rose-gold); transition: transform 0.3s; }
+    .faq-item.active .plus { transform: rotate(45deg); }
+
+  </style>
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-circle"></div>
+  </div>
+
+  <!-- Custom Cursor Removed -->
+
+  <!-- Mobile Menu Overlay -->
+  <div class="menu-overlay" id="menuOverlay" onclick="closeMobileMenu()"></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="menu-close" onclick="closeMobileMenu()">✕</button>
+    <ul>
+      <li><a href="#about" onclick="closeMobileMenu()">About</a></li>
+      <li><a href="#services" onclick="closeMobileMenu()">Services</a></li>
+      <li><a href="#gallery" onclick="closeMobileMenu()">Gallery</a></li>
+      <li><a href="#booking" onclick="closeMobileMenu()">Book Now</a></li>
+      <li><a href="#faq" onclick="closeMobileMenu()">FAQ</a></li>
+      <li><a href="#testimonials" onclick="closeMobileMenu()">Reviews</a></li>
+      <li><a href="/history.html" style="color: var(--rose-gold);">My Bookings</a></li>
+    </ul>
+  </div>
+
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="nav-logo">
+      <span class="brand">Nails By Chivi</span>
+      <span class="sub">Luxury Beauty Studio</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
+      <li><a href="/history.html" style="color: var(--rose-light);">My Bookings</a></li>
+    </ul>
+    <a href="#booking" class="nav-cta">Book Now</a>
+    <button class="hamburger" onclick="openMobileMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ─── Hero ─────────────────────────────────────────────────────────── -->
+  <section id="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <div class="eyebrow-line"></div>
+        <span>Mumbai's Premium Beauty Studio</span>
+      </div>
+      <h1 class="hero-title">
+        Where Beauty<br>
+        <em>Becomes Art</em>
+      </h1>
+      <p class="hero-desc">
+        Certified bridal MUA & nail artist Tanvi Keny brings a luxury touch to every look — from ethereal bridal transformations to stunning nail creations.
+      </p>
+      <div class="hero-actions">
+        <a href="#booking" class="btn-primary">Book Appointment</a>
+        <a href="#services" class="btn-outline">
+          View Services <span class="arrow">→</span>
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-num" data-count="500">0+</div>
+          <div class="stat-label">Happy Clients</div>
+        </div>
+        <div>
+          <div class="stat-num">5★</div>
+          <div class="stat-label">Rated Service</div>
+        </div>
+        <div>
+          <div class="stat-num">6+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <img
+        class="hero-img"
+        src="https://images.unsplash.com/photo-1487412912498-0447578fcca8?w=1200&q=80&fit=crop"
+        alt="Luxury bridal makeup"
+        loading="eager"
+      />
+      <div class="hero-badge">
+        <svg viewBox="0 0 110 110">
+          <defs>
+            <path id="circle" d="M 55,55 m -40,0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0"/>
+          </defs>
+          <text font-family="Jost, sans-serif" font-size="9.5" fill="#c9a07a" letter-spacing="2.8">
+            <textPath href="#circle">CERTIFIED MUA • MUMBAI • TRAVELS GLOBALLY •</textPath>
+          </text>
+        </svg>
+        <span class="badge-center">✦</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── About ─────────────────────────────────────────────────────────── -->
+  <section id="about">
+    <div class="about-images reveal-left">
+      <img
+        class="about-img-main"
+        src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80&fit=crop"
+        alt="Makeup artist at work"
+      />
+      <img
+        class="about-img-secondary"
+        src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&q=80&fit=crop"
+        alt="Nail art close up"
+      />
+      <div class="about-accent"></div>
+    </div>
+    <div class="about-content reveal-right">
+      <div class="section-header">
+        <span class="section-tag">About Tanvi</span>
+        <h2 class="section-title">Crafting <em>Timeless</em> Looks with Passion</h2>
+        <div class="section-divider"></div>
+      </div>
+      <p class="about-text">
+        Hi, I'm Tanvi Keny — a certified makeup artist and nail technician based in Mumbai with a passion for transforming beauty into art. Every brushstroke, every nail design tells a unique story.
+      </p>
+      <p class="about-text">
+        Specializing in luxury bridal looks, traditional Indian makeup, and intricate nail art, I bring both technical precision and creative vision to every client. I travel globally to make your special day picture-perfect.
+      </p>
+      <div class="about-tags">
+        <span class="tag">Certified MUA</span>
+        <span class="tag">Bridal Specialist</span>
+        <span class="tag">Nail Artist</span>
+        <span class="tag">HD Makeup</span>
+        <span class="tag">Mumbai Based</span>
+        <span class="tag">Travels Globally ✈️</span>
+      </div>
+      <a href="#booking" class="btn-primary">Book a Session</a>
+    </div>
+  </section>
+
+  <!-- ─── Services ──────────────────────────────────────────────────────── -->
+  <section id="services">
+    <div class="section-header reveal">
+      <span class="section-tag">What I Offer</span>
+      <h2 class="section-title">Luxury <em>Services</em> & Pricing</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="services-grid" id="servicesGrid">
+      <!-- Populated by JS -->
+    </div>
+  </section>
+
+  <!-- ─── Gallery ───────────────────────────────────────────────────────── -->
+  <section id="gallery">
+    <div class="section-header reveal">
+      <span class="section-tag">Portfolio</span>
+      <h2 class="section-title">The Art of <em>Beauty</em></h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item reveal">
+        <img src="/images/bridal_makeup_1776265117552.png" alt="Bridal Look" />
+        <div class="gallery-overlay"><span class="gallery-label">Bridal Makeup</span></div>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="/images/nail_art_1776265135926.png" alt="Nail Art" />
+        <div class="gallery-overlay"><span class="gallery-label">Nail Art</span></div>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="/images/party_glam_1776265150294.png" alt="Party Glam" />
+        <div class="gallery-overlay"><span class="gallery-label">Party Glam</span></div>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="/images/hairstyling_1776265166604.png" alt="Hairstyle" />
+        <div class="gallery-overlay"><span class="gallery-label">Hairstyling</span></div>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="/images/traditional_look_1776265183183.png" alt="Traditional Look" />
+        <div class="gallery-overlay"><span class="gallery-label">Traditional Look</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Brands ────────────────────────────────────────────────────────── -->
+  <section id="brands">
+    <div class="brands-title">Premium Products We Use</div>
+    <div class="brands-track-container">
+      <div class="brands-track">
+        <span class="brand-item">M·A·C</span>
+        <span class="brand-item">Huda Beauty</span>
+        <span class="brand-item">NARS</span>
+        <span class="brand-item">Charlotte Tilbury</span>
+        <span class="brand-item">Estée Lauder</span>
+        <span class="brand-item">Anastasia Beverly Hills</span>
+        <span class="brand-item">Fenty Beauty</span>
+        <span class="brand-item">OPI</span>
+        <span class="brand-item">Dior</span>
+        <!-- Duplicate for infinite scroll -->
+        <span class="brand-item">M·A·C</span>
+        <span class="brand-item">Huda Beauty</span>
+        <span class="brand-item">NARS</span>
+        <span class="brand-item">Charlotte Tilbury</span>
+        <span class="brand-item">Estée Lauder</span>
+        <span class="brand-item">Anastasia Beverly Hills</span>
+        <span class="brand-item">Fenty Beauty</span>
+        <span class="brand-item">OPI</span>
+        <span class="brand-item">Dior</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Booking ───────────────────────────────────────────────────────── -->
+  <section id="booking">
+    <div class="booking-wrapper">
+      <div class="booking-info reveal-left">
+        <div class="section-header">
+          <span class="section-tag">Appointments</span>
+          <h2 class="section-title">Book Your <em>Transformation</em></h2>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="booking-feature">
+          <div class="booking-feature-icon">🌸</div>
+          <div class="booking-feature-text">
+            <h4>Trial Sessions Available</h4>
+            <p>For brides — a full trial run before the big day to ensure perfection.</p>
+          </div>
+        </div>
+        <div class="booking-feature">
+          <div class="booking-feature-icon">🏠</div>
+          <div class="booking-feature-text">
+            <h4>Home Visits Available</h4>
+            <p>Get dolled up in the comfort of your own space. Mumbai & surrounding areas.</p>
+          </div>
+        </div>
+        <div class="booking-feature">
+          <div class="booking-feature-icon">✈️</div>
+          <div class="booking-feature-text">
+            <h4>Destination Weddings</h4>
+            <p>Available to travel globally for bridal bookings and special events.</p>
+          </div>
+        </div>
+
+        <div class="contact-quick">
+          <p>Or call / WhatsApp directly</p>
+          <a href="tel:+919920046042">📞 +91 99200 46042</a>
+          <a href="https://wa.me/919920046042" target="_blank">💬 Chat on WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="booking-form-wrapper reveal-right">
+        <div class="booking-form">
+          <h3 class="form-title">Reserve Your Slot</h3>
+          <p class="form-subtitle">Fill the form and Tanvi will confirm within 24 hours</p>
+
+          <form id="bookingForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Full Name *</label>
+                <input type="text" name="name" placeholder="Your name" required />
+              </div>
+              <div class="form-group">
+                <label>Phone Number *</label>
+                <input type="tel" name="phone" placeholder="10-digit mobile" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" name="email" placeholder="For confirmation email" />
+            </div>
+
+            <div class="form-group">
+              <label>Service Required *</label>
+              <select name="service" required>
+                <option value="">Select a service...</option>
+                <option value="Bridal Makeup">👰 Bridal Makeup — ₹8,000</option>
+                <option value="Pre-Bridal Package">💍 Pre-Bridal Package — ₹12,000</option>
+                <option value="Party Look Makeup">🎉 Party Look Makeup — ₹1,800</option>
+                <option value="Traditional Look Makeup">🪷 Traditional Look Makeup — ₹2,000</option>
+                <option value="Hairstyle & Makeup">💇‍♀️ Hairstyle & Makeup — ₹2,500</option>
+                <option value="Full Glam Package">⭐ Full Glam Package — ₹5,000</option>
+                <option value="Facial">✨ Facial — ₹800</option>
+                <option value="Cleanup">🧖‍♀️ Cleanup — ₹600</option>
+                <option value="Nail Art">💅 Nail Art — ₹500</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Preferred Date *</label>
+                <input type="date" name="date" required min="" />
+              </div>
+              <div class="form-group">
+                <label>Preferred Time *</label>
+                <select name="time" required>
+                  <option value="">Select time...</option>
+                  <option value="9:00 AM">9:00 AM</option>
+                  <option value="10:00 AM">10:00 AM</option>
+                  <option value="11:00 AM">11:00 AM</option>
+                  <option value="12:00 PM">12:00 PM</option>
+                  <option value="1:00 PM">1:00 PM</option>
+                  <option value="2:00 PM">2:00 PM</option>
+                  <option value="3:00 PM">3:00 PM</option>
+                  <option value="4:00 PM">4:00 PM</option>
+                  <option value="5:00 PM">5:00 PM</option>
+                  <option value="6:00 PM">6:00 PM</option>
+                  <option value="7:00 PM">7:00 PM</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Venue Preference</label>
+              <select name="venue">
+                <option value="At Studio">At Studio (Mumbai)</option>
+                <option value="Home Visit">Home Visit (extra charges may apply)</option>
+              </select>
+            </div>
+
+            <div class="form-group" id="addressGroup" style="display:none">
+              <label>Your Address (for home visit)</label>
+              <input type="text" name="address" placeholder="Full address with area, Mumbai" />
+            </div>
+
+            <div class="form-group">
+              <label>Special Notes / Instructions</label>
+              <textarea name="notes" placeholder="e.g. I want a soft glam look, event is a wedding..."></textarea>
+            </div>
+
+            <button type="submit" class="form-submit" id="submitBtn">
+              Book My Appointment ✦
+            </button>
+          </form>
+
+          <div class="form-alert" id="formAlert"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Testimonials ──────────────────────────────────────────────────── -->
+  <section id="testimonials">
+    <div class="section-header reveal">
+      <span class="section-tag">Client Love</span>
+      <h2 class="section-title">What Brides <em>Say</em></h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="testimonials-scroll">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Tanvi made me look absolutely stunning on my wedding day! The HD bridal makeup lasted all day without any touch-ups. Couldn't have asked for more."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">P</div>
+          <div>
+            <div class="author-name">Priya Sharma</div>
+            <div class="author-role">Bride · December 2024</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"The nail art she did for my engagement was so intricate and beautiful! Got compliments from everyone at the function. Definitely booking again."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">A</div>
+          <div>
+            <div class="author-name">Aditi Kulkarni</div>
+            <div class="author-role">Nail Art Client · Oct 2024</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Booked her for the full glam package for my sister's sangeet. She did makeup, hair, and nails for the whole family. Absolutely professional and talented!"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">S</div>
+          <div>
+            <div class="author-name">Sneha Mehta</div>
+            <div class="author-role">Full Glam Package · Jan 2025</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <!-- ─── FAQ ───────────────────────────────────────────────────────────── -->
+  <section id="faq" style="padding: 8rem 5rem; background: var(--deep); border-top: 1px solid var(--border);">
+    <div class="section-header reveal">
+      <span class="section-tag">Got Questions?</span>
+      <h2 class="section-title">Frequently Asked <em>Questions</em></h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="faq-container reveal" style="max-width: 800px; margin: 0 auto;">
+      <div class="faq-item" onclick="this.classList.toggle('active')">
+        <div class="faq-question">What brands of makeup do you use? <span class="plus">+</span></div>
+        <div class="faq-answer">For luxury bridal and HD makeup, I use top-tier international brands including MAC, Huda Beauty, NARS, Charlotte Tilbury, and Estée Lauder to ensure long-lasting, flawless results.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('active')">
+        <div class="faq-question">Do you travel to the venue? <span class="plus">+</span></div>
+        <div class="faq-answer">Yes, absolutely! I am available to travel to your venue within Mumbai, and for destination weddings globally. Additional travel and accommodation charges may apply for outstation bookings.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('active')">
+        <div class="faq-question">How early should I book for my wedding? <span class="plus">+</span></div>
+        <div class="faq-answer">It is recommended to book at least 3 to 6 months in advance, especially during peak wedding seasons, to secure your preferred dates and schedule a trial session if needed.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('active')">
+        <div class="faq-question">Do you provide group packages? <span class="plus">+</span></div>
+        <div class="faq-answer">Yes, I provide curated group packages for bridesmaids and family members. Please contact me directly via WhatsApp to discuss group pricing and custom requirements.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Instagram Banner ──────────────────────────────────────────────── -->
+  <section id="instagram">
+    <p>Follow Our Work</p>
+    <h2>@makeupby.tanvi on Instagram</h2>
+    <a href="https://www.instagram.com/makeupby.tanvi" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+      </svg>
+      Follow for Daily Looks
+    </a>
+  </section>
+
+  <!-- ─── Footer ────────────────────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand">Nails By Chivi</div>
+        <div class="tagline">Luxury Beauty Studio · Mumbai</div>
+        <p>Where every client walks in as a canvas and leaves as a masterpiece. Premium makeup artistry, nail designs & beauty services.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li>Bridal Makeup</li>
+          <li>Party Look</li>
+          <li>Traditional Look</li>
+          <li>Hairstyling</li>
+          <li>Nail Art</li>
+          <li>Facial & Cleanup</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#about">About Tanvi</a></li>
+          <li><a href="#services">Services & Pricing</a></li>
+          <li><a href="#gallery">Portfolio</a></li>
+          <li><a href="#booking">Book Appointment</a></li>
+          <li><a href="#faq">Help & FAQs</a></li>
+          <li><a href="#testimonials">Client Reviews</a></li>
+          <li><a href="https://instagram.com/makeupby.tanvi" target="_blank">Instagram</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Studio Hours</h4>
+        <div class="footer-hours">
+          <span>Monday – Saturday</span>
+          <strong>9:00 AM – 8:00 PM</strong>
+          <span style="margin-top:0.8rem">Sunday</span>
+          <strong>By Appointment Only</strong>
+          <span style="margin-top:1rem; display:block; color: var(--rose-gold)">📞 +91 99200 46042</span>
+          <span>Mumbai, Maharashtra</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Nails By Chivi. All rights reserved. Made with 🌸 in Mumbai.</p>
+      <div class="social-links">
+        <a href="https://instagram.com/makeupby.tanvi" target="_blank" class="social-link" title="Instagram">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/></svg>
+        </a>
+        <a href="https://wa.me/919920046042" target="_blank" class="social-link" title="WhatsApp">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.116.554 4.105 1.523 5.831L0 24l6.362-1.483A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.645-.502-5.163-1.38l-.371-.214-3.777.881.924-3.671-.24-.389A9.946 9.946 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ─── JavaScript ─────────────────────────────────────────────────────── -->
+  <script>
+    // API Base URL - change this to your deployed server URL in production
+    const API_BASE = window.location.hostname === 'localhost' ? '' : '';
+
+    // Custom Cursor removed
+
+    // ─── Navbar Scroll ────────────────────────────────────────────────────
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // ─── Set min date for date input ──────────────────────────────────────
+    const dateInput = document.querySelector('input[name="date"]');
+    if (dateInput) {
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      dateInput.min = tomorrow.toISOString().split('T')[0];
+    }
+
+    // ─── Show/hide address for home visit ────────────────────────────────
+    const venueSelect = document.querySelector('select[name="venue"]');
+    const addressGroup = document.getElementById('addressGroup');
+    if (venueSelect) {
+      venueSelect.addEventListener('change', () => {
+        addressGroup.style.display = venueSelect.value === 'Home Visit' ? 'block' : 'none';
+      });
+    }
+
+    // ─── Load Services from API ───────────────────────────────────────────
+    async function loadServices() {
+      const grid = document.getElementById('servicesGrid');
+      try {
+        const res = await fetch(`${API_BASE}/api/services?t=${Date.now()}`);
+        const data = await res.json();
+        const validServices = data.data.filter(s => s.name !== 'Mehendi / Henna');
+        
+        grid.innerHTML = validServices.map(s => `
+          <div class="service-card ${s.popular ? 'popular' : ''} reveal">
+            ${s.popular ? '<span class="service-popular-tag">Popular</span>' : ''}
+            <span class="service-icon">${s.icon}</span>
+            <h3 class="service-name">${s.name}</h3>
+            <p class="service-desc">${s.description}</p>
+            <div class="service-meta">
+              <div class="service-price">₹${s.price.toLocaleString('en-IN')}<span> onwards</span></div>
+              <span class="service-duration">⏱ ${s.duration}</span>
+            </div>
+            <a href="#booking" class="book-service-btn" onclick="preselectService(event, '${s.name}')">Book This Service →</a>
+          </div>
+        `).join('');
+        // Re-trigger reveal for new elements
+        setTimeout(observeReveal, 100);
+      } catch {
+        // Fallback: show static services if API not available
+        grid.innerHTML = `
+          <div class="service-card popular reveal">
+            <span class="service-popular-tag">Popular</span>
+            <span class="service-icon">👰</span>
+            <h3 class="service-name">Bridal Makeup</h3>
+            <p class="service-desc">Complete bridal look with HD makeup, setting spray & trial session included</p>
+            <div class="service-meta">
+              <div class="service-price">₹8,000<span> onwards</span></div>
+              <span class="service-duration">⏱ 3-4 hrs</span>
+            </div>
+            <a href="#booking" class="book-service-btn" onclick="preselectService(event, 'Bridal Makeup')">Book This Service →</a>
+          </div>
+          <div class="service-card reveal">
+            <span class="service-icon">🎉</span>
+            <h3 class="service-name">Party Look Makeup</h3>
+            <p class="service-desc">Glamorous party-ready look with eyeshadow, contour & long-lasting finish</p>
+            <div class="service-meta">
+              <div class="service-price">₹1,800<span> onwards</span></div>
+              <span class="service-duration">⏱ 1-2 hrs</span>
+            </div>
+            <a href="#booking" class="book-service-btn" onclick="preselectService(event, 'Party Look Makeup')">Book This Service →</a>
+          </div>
+          <div class="service-card popular reveal">
+            <span class="service-popular-tag">Popular</span>
+            <span class="service-icon">🪷</span>
+            <h3 class="service-name">Traditional Look</h3>
+            <p class="service-desc">Classic Indian look for functions, poojas & cultural events</p>
+            <div class="service-meta">
+              <div class="service-price">₹2,000<span> onwards</span></div>
+              <span class="service-duration">⏱ 2 hrs</span>
+            </div>
+            <a href="#booking" class="book-service-btn" onclick="preselectService(event, 'Traditional Look Makeup')">Book This Service →</a>
+          </div>
+          <div class="service-card reveal">
+            <span class="service-icon">💅</span>
+            <h3 class="service-name">Nail Art</h3>
+            <p class="service-desc">Creative nail art designs, gel nails, ombre, French & more</p>
+            <div class="service-meta">
+              <div class="service-price">₹500<span> onwards</span></div>
+              <span class="service-duration">⏱ 45 min</span>
+            </div>
+            <a href="#booking" class="book-service-btn" onclick="preselectService(event, 'Nail Art')">Book This Service →</a>
+          </div>
+          <div class="service-card reveal">
+            <span class="service-icon">✨</span>
+            <h3 class="service-name">Facial</h3>
+            <p class="service-desc">Relaxing facial cleanse, massage & glow treatment for radiant skin</p>
+            <div class="service-meta">
+              <div class="service-price">₹800<span> onwards</span></div>
+              <span class="service-duration">⏱ 45 min</span>
+            </div>
+            <a href="#booking" class="book-service-btn" onclick="preselectService(event, 'Facial')">Book This Service →</a>
+          </div>
+          <div class="service-card popular reveal">
+            <span class="service-popular-tag">Popular</span>
+            <span class="service-icon">💍</span>
+            <h3 class="service-name">Pre-Bridal Package</h3>
+            <p class="service-desc">4 sessions: facial, cleanup, threading & full glow prep before your big day</p>
+            <div class="service-meta">
+              <div class="service-price">₹12,000<span> onwards</span></div>
+              <span class="service-duration">⏱ Multiple sessions</span>
+            </div>
+            <a href="#booking" class="book-service-btn" onclick="preselectService(event, 'Pre-Bridal Package')">Book This Service →</a>
+          </div>
+        `;
+        setTimeout(observeReveal, 100);
+      }
+    }
+
+    // ─── Preselect service from card ──────────────────────────────────────
+    function preselectService(e, serviceName) {
+      // We do not prevent default here so href="#booking" still works perfectly.
+      
+      const select = document.querySelector('select[name="service"]');
+      if (select) {
+        const opt = [...select.options].find(o => o.value === serviceName);
+        if (opt) {
+          select.value = serviceName;
+        } else {
+          select.value = ""; // fallback
+        }
+      }
+      
+      const bookingSection = document.getElementById('booking');
+      if (bookingSection) {
+        bookingSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    // ─── Booking Form Submit ──────────────────────────────────────────────
+    const bookingForm = document.getElementById('bookingForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const formAlert = document.getElementById('formAlert');
+
+    bookingForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Booking...';
+      formAlert.className = 'form-alert';
+      formAlert.style.display = 'none';
+
+      const formData = new FormData(bookingForm);
+      const data = Object.fromEntries(formData.entries());
+
+      // Simple phone validation
+      if (!/^[6-9]\d{9}$/.test(data.phone)) {
+        formAlert.className = 'form-alert error';
+        formAlert.textContent = '⚠ Please enter a valid 10-digit Indian mobile number.';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Book My Appointment ✦';
+        return;
+      }
+
+      try {
+        const res = await fetch(`${API_BASE}/api/appointments`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        const result = await res.json();
+
+        if (result.success) {
+          formAlert.className = 'form-alert success';
+          formAlert.style.display = 'block';
+          formAlert.textContent = '🌸 ' + result.message;
+          alert('🌸 Appointment book successfully!');
+          bookingForm.reset();
+          addressGroup.style.display = 'none';
+        } else {
+          formAlert.className = 'form-alert error';
+          formAlert.style.display = 'block';
+          formAlert.textContent = '⚠ ' + result.message;
+          alert('⚠ ' + result.message);
+        }
+      } catch {
+        formAlert.className = 'form-alert error';
+        formAlert.textContent = '⚠ Could not connect to server. Please call +91 99200 46042 directly.';
+      }
+
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Book My Appointment ✦';
+    });
+
+    // ─── Scroll Reveal ────────────────────────────────────────────────────
+    function observeReveal() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => entry.target.classList.add('visible'), i * 80);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+        observer.observe(el);
+      });
+    }
+    function openMobileMenu() {
+  console.log("OPEN CLICKED"); // debug
+  document.getElementById('mobileMenu').classList.add('open');
+  document.getElementById('menuOverlay').classList.add('open');
+}
+
+function closeMobileMenu() {
+  console.log("CLOSE CLICKED"); // debug
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.getElementById('menuOverlay').classList.remove('open');
+}
+
+    // ─── Init ─────────────────────────────────────────────────────────────
+    loadServices();
+    observeReveal();
+  
+    // Preloader fade out
+    window.addEventListener('load', () => {
+      const p = document.getElementById('preloader');
+      if(p) {
+        p.style.opacity = '0';
+        setTimeout(() => p.style.display = 'none', 500);
+      }
+    });
+
+    // Back to Top functionality
+    const backToTopBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+    });
+    backToTopBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+  </script>
+  <!-- Floating Elements -->
+  <a href="https://wa.me/919920046042" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.116.554 4.105 1.523 5.831L0 24l6.362-1.483A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.645-.502-5.163-1.38l-.371-.214-3.777.881.924-3.671-.24-.389A9.946 9.946 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+  </a>
+
+  <a href="#" class="back-to-top" id="backToTop" aria-label="Back to Top">↑</a>
+
+</body>
+</html>

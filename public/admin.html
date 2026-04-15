@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel — Nails By Chivi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black: #0d0a0b; --deep: #120e10; --card: #1a1419;
+      --rose: #c9a07a; --rose-light: #dfc09a; --muted: #9a8880;
+      --text: #e8ddd4; --border: rgba(201,160,122,0.18);
+      --success: rgba(144,238,144,0.8); --pending: rgba(255,213,100,0.8);
+      --cancelled: rgba(238,100,100,0.8);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Jost', sans-serif; background: var(--black); color: var(--text); min-height: 100vh; }
+
+    header {
+      padding: 1.5rem 2.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      background: var(--deep);
+    }
+    header h1 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--rose-light); }
+    header a { color: var(--muted); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.1em; }
+    header a:hover { color: var(--rose); }
+
+    .dashboard { padding: 2.5rem; }
+
+    .stats-row {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; margin-bottom: 2.5rem;
+    }
+    .stat-card {
+      background: var(--card); border: 1px solid var(--border);
+      padding: 1.5rem; text-align: center;
+    }
+    .stat-card .num {
+      font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--rose-light);
+    }
+    .stat-card .label { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.3rem; }
+
+    .controls {
+      display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; align-items: center;
+    }
+    .controls select, .controls input {
+      background: var(--card); border: 1px solid var(--border); color: var(--text);
+      padding: 0.6rem 1rem; font-family: 'Jost', sans-serif; font-size: 0.85rem;
+      outline: none; cursor: pointer;
+    }
+    .controls select:focus, .controls input:focus { border-color: var(--rose); }
+    .btn-refresh {
+      padding: 0.6rem 1.5rem; background: var(--rose); color: var(--black);
+      border: none; font-family: 'Jost', sans-serif; font-size: 0.8rem;
+      font-weight: 600; letter-spacing: 0.1em; cursor: pointer; transition: background 0.2s;
+    }
+    .btn-refresh:hover { background: var(--rose-light); }
+
+    table { width: 100%; border-collapse: collapse; }
+    th {
+      text-align: left; padding: 0.8rem 1rem;
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--rose); border-bottom: 1px solid var(--border);
+    }
+    td {
+      padding: 1rem; font-size: 0.85rem; color: var(--text);
+      border-bottom: 1px solid rgba(201,160,122,0.08);
+      vertical-align: top;
+    }
+    tr:hover td { background: rgba(201,160,122,0.03); }
+
+    .status-badge {
+      display: inline-block; padding: 0.2rem 0.7rem; font-size: 0.7rem;
+      font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 2px;
+    }
+    .status-pending { background: rgba(255,213,100,0.15); color: #ffd564; border: 1px solid rgba(255,213,100,0.3); }
+    .status-confirmed { background: rgba(144,238,144,0.15); color: #90ee90; border: 1px solid rgba(144,238,144,0.3); }
+    .status-completed { background: rgba(201,160,122,0.15); color: var(--rose); border: 1px solid var(--border); }
+    .status-cancelled { background: rgba(238,100,100,0.1); color: #ee8888; border: 1px solid rgba(238,100,100,0.2); }
+
+    .action-select {
+      background: var(--black); border: 1px solid var(--border);
+      color: var(--text); padding: 0.3rem 0.5rem; font-size: 0.75rem; cursor: pointer;
+    }
+
+    .empty { text-align: center; padding: 4rem; color: var(--muted); font-size: 1rem; }
+    .loading { text-align: center; padding: 4rem; color: var(--muted); }
+
+    @media (max-width: 768px) {
+      .stats-row { grid-template-columns: 1fr 1fr; }
+      .dashboard { padding: 1.2rem; }
+      table { font-size: 0.75rem; }
+      th, td { padding: 0.6rem 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Admin — Nails By Chivi 🌸</h1>
+    <div>
+      <a href="/" style="margin-right: 1.5rem;">← Back to Website</a>
+      <a href="#" onclick="logout()">Logout 🔒</a>
+    </div>
+  </header>
+
+  <div class="dashboard">
+    <div class="stats-row" id="statsRow">
+      <div class="stat-card"><div class="num" id="statTotal">—</div><div class="label">Total Bookings</div></div>
+      <div class="stat-card"><div class="num" id="statPending">—</div><div class="label">Pending</div></div>
+      <div class="stat-card"><div class="num" id="statConfirmed">—</div><div class="label">Confirmed</div></div>
+      <div class="stat-card"><div class="num" id="statCompleted">—</div><div class="label">Completed</div></div>
+    </div>
+
+    <div class="controls">
+      <select id="filterStatus" onchange="loadAppointments()">
+        <option value="">All Statuses</option>
+        <option value="pending">Pending</option>
+        <option value="confirmed">Confirmed</option>
+        <option value="completed">Completed</option>
+        <option value="cancelled">Cancelled</option>
+      </select>
+      <input type="date" id="filterDate" onchange="loadAppointments()" />
+      <button class="btn-refresh" onclick="loadAppointments()">↻ Refresh</button>
+    </div>
+
+    <div id="tableContainer">
+      <div class="loading">Loading appointments...</div>
+    </div>
+  </div>
+
+  <script>
+    async function loadAppointments() {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        window.location.href = '/login.html';
+        return;
+      }
+
+      const status = document.getElementById('filterStatus').value;
+      const date = document.getElementById('filterDate').value;
+      let url = '/api/appointments?';
+      if (status) url += `status=${status}&`;
+      if (date) url += `date=${date}`;
+
+      document.getElementById('tableContainer').innerHTML = '<div class="loading">Loading...</div>';
+
+      try {
+        const res = await fetch(url, {
+          headers: {
+            'Authorization': 'Bearer ' + token
+          }
+        });
+        
+        if (res.status === 401) {
+          localStorage.removeItem('token');
+          window.location.href = '/login.html';
+          return;
+        }
+
+        const data = await res.json();
+
+        if (!data.success) throw new Error(data.message);
+
+        const all = data.data;
+        document.getElementById('statTotal').textContent = all.length;
+        document.getElementById('statPending').textContent = all.filter(a => a.status === 'pending').length;
+        document.getElementById('statConfirmed').textContent = all.filter(a => a.status === 'confirmed').length;
+        document.getElementById('statCompleted').textContent = all.filter(a => a.status === 'completed').length;
+
+        if (all.length === 0) {
+          document.getElementById('tableContainer').innerHTML = '<div class="empty">No appointments found for selected filters.</div>';
+          return;
+        }
+
+        document.getElementById('tableContainer').innerHTML = `
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Client</th>
+                <th>Service</th>
+                <th>Date & Time</th>
+                <th>Venue</th>
+                <th>Notes</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${all.map((a, i) => `
+                <tr>
+                  <td style="color:var(--muted)">${i + 1}</td>
+                  <td>
+                    <strong>${a.name}</strong><br>
+                    <span style="color:var(--muted);font-size:0.78rem">${a.phone}</span><br>
+                    ${a.email ? `<span style="color:var(--muted);font-size:0.75rem">${a.email}</span>` : ''}
+                  </td>
+                  <td style="color:var(--rose-light)">${a.service}</td>
+                  <td>
+                    ${new Date(a.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}<br>
+                    <span style="color:var(--muted)">${a.time}</span>
+                  </td>
+                  <td>${a.venue}${a.address ? `<br><span style="color:var(--muted);font-size:0.75rem">${a.address}</span>` : ''}</td>
+                  <td style="color:var(--muted);font-size:0.8rem;max-width:160px">${a.notes || '—'}</td>
+                  <td><span class="status-badge status-${a.status}">${a.status}</span></td>
+                  <td>
+                    <select class="action-select" onchange="updateStatus('${a._id}', this.value)">
+                      <option value="">Change...</option>
+                      <option value="pending">Pending</option>
+                      <option value="confirmed">Confirmed</option>
+                      <option value="completed">Completed</option>
+                      <option value="cancelled">Cancelled</option>
+                    </select>
+                  </td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        `;
+      } catch (err) {
+        document.getElementById('tableContainer').innerHTML = `<div class="empty">Error: ${err.message}. Make sure the server is running.</div>`;
+      }
+    }
+
+    async function updateStatus(id, status) {
+      if (!status) return;
+      try {
+        const res = await fetch(`/api/appointments/${id}`, {
+          method: 'PATCH',
+          headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+          },
+          body: JSON.stringify({ status })
+        });
+        const data = await res.json();
+        if (data.success) loadAppointments();
+        else alert('Error: ' + data.message);
+      } catch { alert('Server error'); }
+    }
+
+    function logout() {
+      localStorage.removeItem('token');
+      window.location.href = '/login.html';
+    }
+
+    // Check auth on load
+    if (!localStorage.getItem('token')) {
+      window.location.href = '/login.html';
+    } else {
+      loadAppointments();
+      setInterval(loadAppointments, 30000); // Auto-refresh every 30s
+    }
+  </script>
+</body>
+</html>
